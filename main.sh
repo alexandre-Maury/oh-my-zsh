@@ -41,7 +41,6 @@ done
 # Accorde les droits administrateur a l'utilisateur ci celui-ci le souhaite
 read -p "[*] Accorder les droits sudo ==> y/N " reponse
 if [ "$reponse" == "y" ]; then
-    # usermod -aG sudo $utilisateur
     printf "[Succès] %s ==> %s\\n" "Votre compte est à présent membre du groupe sudo"
 fi
 
