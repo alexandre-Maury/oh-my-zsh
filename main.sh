@@ -11,16 +11,16 @@ deps=("npm" "git" "curl" "sudo" "neofetch")
 
 if [[ $EUID != 0 ]]; then
     printf "\n"
-    printf "%s\\n" "[-] privilèges root obligatoire ==> sudo su | su -"
+    printf "%s\\n" "[Erreur] privilèges root obligatoire ==> sudo su | su -"
     exit 1
 else
     read -p "==> Entrez votre nom d'utilisateur : " utilisateur
 fi
 
-# apt update -y 
-# apt upgrade -y 
-# apt full-upgrade -y 
-# apt autoremove -y 
+apt update -y 
+apt upgrade -y 
+apt full-upgrade -y 
+apt autoremove -y 
 clear
 
 
