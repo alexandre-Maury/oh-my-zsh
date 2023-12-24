@@ -7,9 +7,6 @@
 # License : GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 #==============================================================================================================
 
-
-echo "test ok 2"
-
 deps=("npm" "git" "curl" "sudo" "neofetch")
 
 if [[ $EUID != 0 ]]; then
