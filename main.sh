@@ -17,6 +17,8 @@ else
     read -p "==> Entrez votre nom d'utilisateur : " utilisateur
 fi
 
+echo "test ok"
+
 
 
 
