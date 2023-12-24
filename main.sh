@@ -7,6 +7,9 @@
 # License : GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 #==============================================================================================================
 
+
+echo "test ok"
+
 deps=("npm" "git" "curl" "sudo" "neofetch")
 
 if [[ $EUID != 0 ]]; then
@@ -17,7 +20,6 @@ else
     read -p "==> Entrez votre nom d'utilisateur : " utilisateur
 fi
 
-echo "test ok"
 
 
 
