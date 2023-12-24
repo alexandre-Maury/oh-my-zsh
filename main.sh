@@ -14,6 +14,7 @@ if [[ $EUID != 0 ]]; then
     printf "%s %s \\n" "[Erreur] Privilèges root nécessaires" "==> sudo su | su - "
     exit 1
 else
+    sleep 1
     echo "[*] Veuillez entrer votre nom d'utilisateur : "
     read utilisateur
 
