@@ -11,11 +11,19 @@ deps=("npm" "git" "curl" "sudo" "neofetch")
 
 if [[ $EUID != 0 ]]; then
     printf "\n"
-    printf "%s\\n" "[Erreur] privilèges root obligatoire ==> sudo su | su -"
+    printf "%s\\n" "[Erreur] Privilèges root nécessaires. Utilisez 'sudo' pour exécuter le script."
     exit 1
 else
-    echo "==> Entrez votre nom d'utilisateur : "
+    echo "==> Veuillez entrer votre nom d'utilisateur : "
     read utilisateur
+
+    # Validation du nom d'utilisateur
+    if [ -z "$utilisateur" ]; then
+        echo "[Erreur] Nom d'utilisateur vide. Veuillez entrer un nom d'utilisateur valide."
+        exit 1
+    fi
+
+    # Le reste du script ici ...
 
 fi
 
