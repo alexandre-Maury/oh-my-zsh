@@ -21,6 +21,8 @@ fi
 # apt upgrade -y 
 # apt full-upgrade -y 
 # apt autoremove -y 
+clear
+
 
 # Check les paquets installé et procéde à l'installation de ceux manquants
 for dep in "${deps[@]}"; do
@@ -90,18 +92,22 @@ if [[ "$zsh" =~ ^[Yy]$ ]]; then
         printf "Le shell est déjà configuré comme zsh.\n"
     fi
 
-    git clone git://github.com/robbyrussell/oh-my-zsh.git /home/${utilisateur}/.config/oh-my-zsh/
+    # Cloner oh-my-zsh
+    git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git /home/"$utilisateur"/.config/oh-my-zsh/
 
-    # themes
-    git clone https://github.com/caiogondim/bullet-train.zsh.git 
-    mv bullet-train.zsh /home/${utilisateur}/.config/oh-my-zsh/themes/bullet-train
-        
-    # plugins
-    git clone https://github.com/zsh-users/zsh-autosuggestions /home/${utilisateur}/.config/oh-my-zsh/plugins/zsh-autosuggestions
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /home/${utilisateur}/.config/oh-my-zsh/plugins/zsh-syntax-highlighting
-        
-    git clone --depth 1 https://github.com/junegunn/fzf.git /home/${utilisateur}/.config/fzf
-    yes | /home/${utilisateur}/.config/fzf/install
+    # Cloner et déplacer le thème Bullet Train
+    git clone --depth=1 https://github.com/caiogondim/bullet-train.zsh.git /tmp/bullet-train.zsh
+    mv /tmp/bullet-train.zsh /home/"$utilisateur"/.config/oh-my-zsh/themes/
+
+    # Cloner les plugins
+    plugins=("zsh-autosuggestions" "zsh-syntax-highlighting")
+    for plugin in "${plugins[@]}"; do
+        git clone --depth=1 "https://github.com/zsh-users/$plugin" "/home/$utilisateur/.config/oh-my-zsh/plugins/$plugin"
+    done
+
+    # Installer fzf
+    git clone --depth 1 https://github.com/junegunn/fzf.git /home/"$utilisateur"/.config/fzf
+    yes | /home/"$utilisateur"/.config/fzf/install
 
     printf "[Succès] %s ==> %s\\n" "oh-my-zsh est configuré"
 fi
