@@ -14,9 +14,7 @@ if [[ $EUID != 0 ]]; then
     printf "%s %s \\n" "[Erreur] Privilèges root nécessaires" "==> sudo su | su - "
     exit 1
 else
-    sleep 1
-    echo "[*] Veuillez entrer votre nom d'utilisateur : "
-    read utilisateur
+    read -p "[*] Veuillez entrer votre nom d'utilisateur : " utilisateur
 
     # Validation du nom d'utilisateur
     if [ -z "$utilisateur" ]; then
@@ -46,16 +44,14 @@ else
     done
 
     # Accorde les droits administrateur a l'utilisateur ci celui-ci le souhaite
-    echo "[*] Accorder les privilèges sudo au compte ${utilisateur} ==> y/N  "
-    read reponse
+    read -p "[*] Accorder les privilèges sudo au compte ${utilisateur} ==> y/N " reponse
     if [ "$reponse" == "y" ]; then
         usermod -aG sudo $utilisateur
         printf "%s \\n" "[Succès] Votre compte ${utilisateur} est à présent membre du groupe sudo"
     fi
 
     # Configure les identifiants git ci celui-ci le souhaite
-    echo "[*] Souhaitez-vous configurer Git ==> y/N  "
-    read git
+    read -p "[*] Souhaitez-vous configurer Git ==> y/N " git
     if [ $git = 'y' ]; then
         read -p "==> Entrez votre nom d'utilisateur : " name
         read -p "==> Entrez votre adresse email : " email	
@@ -66,8 +62,7 @@ else
     fi
 
     # Configure les drivers video
-    echo "[*] Souhaitez-vous configurer le pilotte video ==> y/N "
-    read driver
+    read -p "[*] Souhaitez-vous configurer le pilotte video ==> y/N " driver
     if [ $driver = 'y' ]; then
 
         nvidia=$(lspci | grep -e VGA -e 3D | grep -ie nvidia 2> /dev/null || echo '')
@@ -91,8 +86,7 @@ else
 
 
     # Configure le shell a zsh et install oh-my-zsh
-    echo "[*] Souhaitez-vous installé oh-my-zsh ==> y/N "
-    read zsh
+    read -p "[*] Souhaitez-vous installé le theme oh-my-zsh ==> y/N " zsh
     if [[ "$zsh" =~ ^[Yy]$ ]]; then
 
         # Vérifier si le shell actuel est déjà zsh
@@ -129,7 +123,7 @@ else
 
     printf "%s \\n" "[Configuration] ==> transfert des fonds d'ecrans"
     cp -a $PWD/backgrounds /home/${utilisateur}/
-     printf "%s \\n" "[Succés] ==> disponible dans /home/${utilisateur}/"
+    printf "%s \\n" "[Succés] ==> disponible dans /home/${utilisateur}/"
 
 
 fi
