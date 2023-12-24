@@ -46,11 +46,11 @@ else
     done
 
     # Accorde les droits administrateur a l'utilisateur ci celui-ci le souhaite
-    echo "[*] Accorder les privilèges sudo au compte ${$utilisateur} ==> y/N  "
+    echo "[*] Accorder les privilèges sudo au compte ${utilisateur} ==> y/N  "
     read reponse
     if [ "$reponse" == "y" ]; then
         usermod -aG sudo $utilisateur
-        printf "%s \\n" "[Succès] Votre compte ${$utilisateur} est à présent membre du groupe sudo"
+        printf "%s \\n" "[Succès] Votre compte ${utilisateur} est à présent membre du groupe sudo"
     fi
 
     # Configure les identifiants git ci celui-ci le souhaite
