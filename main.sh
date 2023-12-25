@@ -101,7 +101,7 @@ else
 
         # Cloner oh-my-zsh
         # git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git /home/"$utilisateur"/.config/oh-my-zsh/
-        sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+        sh -c "$(curl -fsSL  /home/${utilisateur} https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh /)"
 
         # Cloner et déplacer le thème Bullet Train
         git clone --depth=1 https://github.com/caiogondim/bullet-train.zsh.git /tmp/bullet-train.zsh
