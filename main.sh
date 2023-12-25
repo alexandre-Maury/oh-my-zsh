@@ -54,20 +54,18 @@ fi
 
 # Install oh-my-zsh
 printf "%s \\n" "[En cours] Installation de my-oh-zsh"
-export ZSH="/home/${utilisateur}/.config/zsh/oh-my-zsh"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
+git clone https://github.com/ohmyzsh/ohmyzsh.git /home/"${utilisateur}"/.config/zsh/oh-my-zsh
 
 # Install themes (powerlevel10k)
 printf "%s %s \\n" "[En cours] Installation du theme" "==> powerlevel10k"
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-/home/"${utilisateur}"/.config/zsh/oh-my-zsh/custom}/themes/powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/"${utilisateur}"/.config/zsh/oh-my-zsh/custom/themes/powerlevel10k
 
 
 # Install plugins (zsh-autosuggestions and zsh-syntax-highlighting)
 plugins=("zsh-autosuggestions" "zsh-syntax-highlighting")
 for plugin in "${plugins[@]}"; do
     printf "%s %s \\n" "[En cours] Installation du plugin" "==> ${plugin}"
-    git clone https://github.com/zsh-users/"${plugin}".git ${ZSH_CUSTOM:-/home/"${utilisateur}"/.config/zsh/oh-my-zsh/custom}/plugins/"${plugin}"
+    git clone https://github.com/zsh-users/"${plugin}".git /home/"${utilisateur}"/.config/zsh/oh-my-zsh/custom/plugins/"${plugin}" 
 done
 
 # Installer fzf
@@ -83,6 +81,6 @@ sed  -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' 
 printf "%s %s \\n" "[En cours] Activation des plugins" "==> zsh-autosuggestions et zsh-syntax-highlighting"
 sed  -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/g' /home/"${utilisateur}"/.zshrc
                 
-# Copie des fichier dans le dossier ${utilisateur}
-# cp -rf $HOME/.config/zsh/oh-my-zsh /home/"${utilisateur}"/.config/zsh
-# cp -rf $HOME/.zshrc /home/"${utilisateur}"/.zshrc
+# Copie des fichier dans le dossier ${root}
+cp -rf /home/"${utilisateur}"/.config/zsh/oh-my-zsh $HOME/.config/zsh/oh-my-zsh
+cp -rf /home/"${utilisateur}"/.zshrc $HOME/.zshrc
