@@ -34,7 +34,7 @@ for dep in "${deps[@]}"; do
 done
 
 # Configure le shell a zsh et install oh-my-zsh
-mkdir -p ~/.config/zsh/save 
+mkdir -p home/${utilisateur}/.config/zsh/save 
 
 
 # Vérifier si le shell actuel est déjà zsh
@@ -45,31 +45,31 @@ else
     printf "Le shell est déjà configuré comme $SHELL"
 fi
 
-printf "%s \\n" "==> Installation de oh-my-zsh ==> $HOME/.config/zsh/oh-my-zsh"
-export ZSH="~/.config/zsh/oh-my-zsh"
+# Install oh-my-zsh
+export ZSH="home/${utilisateur}/.config/zsh/oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 
 # Install themes (powerlevel10k)
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.config/zsh/oh-my-zsh/custom}/themes/powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-home/${utilisateur}/.config/zsh/oh-my-zsh/custom}/themes/powerlevel10k
 
 
 # Install plugins (zsh-autosuggestions and zsh-syntax-highlighting)
 plugins=("zsh-autosuggestions" "zsh-syntax-highlighting")
 for plugin in "${plugins[@]}"; do
-    git clone https://github.com/zsh-users/${plugin}.git ${ZSH_CUSTOM:-~/.config/zsh/oh-my-zsh/custom}/plugins/${plugin}
+    git clone https://github.com/zsh-users/${plugin}.git ${ZSH_CUSTOM:-home/${utilisateur}/.config/zsh/oh-my-zsh/custom}/plugins/${plugin}
 done
 
 # Installer fzf
-git clone https://github.com/junegunn/fzf.git /home/${utilisateur}/.fzf
-yes | /home/${utilisateur}/.fzf/install
+git clone https://github.com/junegunn/fzf.git home/${utilisateur}/.config/fzf
+yes | home/${utilisateur}/.config/fzf/install
 
-# Sauvegarde des fichier de base
-cp -rf ~/.zshrc ~/.config/zsh/save/.zshrc-backup-$(date +"%Y-%m-%d")
+# Sauvegarde des fichier de base -----------------------------
+cp -rf home/${utilisateur}/.zshrc home/${utilisateur}/.config/zsh/save/.zshrc-backup-$(date +"%Y-%m-%d")
                 
 # Activation du theme et des plugins
 # sed  -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="agnoster"/g' $HOME/.zshrc
-sed  -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' ~/.zshrc
+sed  -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' home/${utilisateur}/.zshrc
                 
 # Copie des fichier dans le dossier ${utilisateur}
 # cp -rf $HOME/.config/zsh/oh-my-zsh /home/"${utilisateur}"/.config/zsh
