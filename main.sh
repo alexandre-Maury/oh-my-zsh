@@ -104,8 +104,8 @@ else
         cd /home/"$utilisateur"/.oh-my-zsh/tools/ && chmod +x ./install.sh && ./install.sh 
 
         # Cloner et déplacer le thème Bullet Train
-        git clone --depth=1 https://github.com/caiogondim/bullet-train.zsh.git /tmp/bullet-train.zsh
-        mv /tmp/bullet-train.zsh /home/"$utilisateur"/.oh-my-zsh/themes
+        git clone https://github.com/caiogondim/bullet-train.zsh.git /tmp/bullet-train.zsh
+        mv /tmp/bullet-train.zsh /home/"$utilisateur"/.oh-my-zsh/themes/
 
         # Cloner les plugins
         plugins=("zsh-autosuggestions" "zsh-syntax-highlighting")
