@@ -126,6 +126,15 @@ else
         git clone https://github.com/junegunn/fzf.git /home/${utilisateur}/.fzf
         yes | /home/${utilisateur}/.fzf/install
 
+        # Sauvegarde des fichier de base
+        cp -rf /home/"${utilisateur}"/.zshrc /home/"${utilisateur}"/.config/zsh/save/.zshrc-backup-$(date +"%Y-%m-%d")
+                
+        # Activation du theme et des plugins
+        sed  -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="agnoster"/g' $HOME/.zshrc
+                
+        # Copie des fichier dans le dossier ${utilisateur}
+        cp -rf $HOME/.config/zsh/oh-my-zsh /home/"${utilisateur}"/.config/zsh
+        cp -rf $HOME/.zshrc /home/"${utilisateur}"/.zshrc
         
 
     fi
