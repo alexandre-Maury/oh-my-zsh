@@ -100,24 +100,25 @@ else
         fi
 
         # Cloner oh-my-zsh
-        git clone https://github.com/ohmyzsh/ohmyzsh.git /home/"$utilisateur"/.config/oh-my-zsh/
-        cd /home/"$utilisateur"/.config/oh-my-zsh/tools/ && chmod +x ./install.sh && ./install.sh 
+        git clone https://github.com/ohmyzsh/ohmyzsh.git /home/"$utilisateur"/.oh-my-zsh
+        cd /home/"$utilisateur"/.oh-my-zsh/tools/ && chmod +x ./install.sh && ./install.sh 
 
         # Cloner et déplacer le thème Bullet Train
         git clone --depth=1 https://github.com/caiogondim/bullet-train.zsh.git /tmp/bullet-train.zsh
-        mv /tmp/bullet-train.zsh /home/"$utilisateur"/.config/oh-my-zsh/themes/
+        mv /tmp/bullet-train.zsh /home/"$utilisateur"/.oh-my-zsh/themes
 
         # Cloner les plugins
         plugins=("zsh-autosuggestions" "zsh-syntax-highlighting")
         for plugin in "${plugins[@]}"; do
-            git clone --depth=1 "https://github.com/zsh-users/$plugin" "/home/$utilisateur/.config/oh-my-zsh/plugins/$plugin"
+            git clone "https://github.com/zsh-users/$plugin" "/home/"$utilisateur"/.oh-my-zsh/plugins/$plugin"
         done
 
         # Installer fzf
-        git clone --depth 1 https://github.com/junegunn/fzf.git /home/"$utilisateur"/.config/fzf
-        yes | /home/"$utilisateur"/.config/fzf/install
+        git clone https://github.com/junegunn/fzf.git /home/"$utilisateur"/.fzf
+        yes | /home/"$utilisateur"/.fzf/install
 
         cp -rf /home/"$utilisateur"/.zshrc /home/"$utilisateur"/save/.zshrc
+        cp -rf /root/.zshrc /home/${utilisateur}
 
         printf "%s \\n" "[Succès] oh-my-zsh est configuré"
     fi
