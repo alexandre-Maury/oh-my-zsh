@@ -54,7 +54,7 @@ fi
 
 # Install oh-my-zsh
 printf "%s \\n" "[En cours] Installation de my-oh-zsh"
-export ZSH="/home/${utilisateur}/.config/zsh/oh-my-zsh"
+# export ZSH="/home/${utilisateur}/.config/zsh/oh-my-zsh"
 git clone https://github.com/ohmyzsh/ohmyzsh.git /home/"${utilisateur}"/.config/zsh/oh-my-zsh
 cp -rf /home/"${utilisateur}"/.config/zsh/oh-my-zsh/templates/zshrc.zsh-template /home/"${utilisateur}"/.zshrc
 
@@ -82,6 +82,8 @@ sed  -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' 
 # Activation des plugins (zsh-autosuggestions et zsh-syntax-highlighting)
 printf "%s %s \\n" "[En cours] Activation des plugins" "==> zsh-autosuggestions et zsh-syntax-highlighting"
 sed  -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/g' /home/"${utilisateur}"/.zshrc
+
+sed  -i 's/export ZSH=$HOME/.oh-my-zsh//home/"${utilisateur}"/.config/zsh/oh-my-zsh/g' /home/"${utilisateur}"/.zshrc
                 
 # Copie des fichier dans le dossier ${root}
 printf "%s %s \\n" "[En cours] Copie des fichier" "==> root"
