@@ -55,6 +55,7 @@ fi
 # Install oh-my-zsh
 printf "%s \\n" "[En cours] Installation de my-oh-zsh"
 git clone https://github.com/ohmyzsh/ohmyzsh.git /home/"${utilisateur}"/.config/zsh/oh-my-zsh
+cp -rf /home/"${utilisateur}"/.config/zsh/oh-my-zsh/templates/zshrc.zsh-template /home/"${utilisateur}"/.zshrc
 
 # Install themes (powerlevel10k)
 printf "%s %s \\n" "[En cours] Installation du theme" "==> powerlevel10k"
@@ -82,5 +83,6 @@ printf "%s %s \\n" "[En cours] Activation des plugins" "==> zsh-autosuggestions 
 sed  -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/g' /home/"${utilisateur}"/.zshrc
                 
 # Copie des fichier dans le dossier ${root}
-cp -rf /home/"${utilisateur}"/.config/zsh/oh-my-zsh $HOME/.config/zsh/oh-my-zsh
-cp -rf /home/"${utilisateur}"/.zshrc $HOME/.zshrc
+printf "%s %s \\n" "[En cours] Copie des fichier" "==> root"
+sudo cp -rf /home/"${utilisateur}"/.config/zsh/oh-my-zsh /root/.config/zsh/oh-my-zsh
+sudo cp -rf /home/"${utilisateur}"/.zshrc /root/.zshrc
