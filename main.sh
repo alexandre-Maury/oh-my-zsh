@@ -115,6 +115,8 @@ else
         git clone --depth 1 https://github.com/junegunn/fzf.git /home/"$utilisateur"/.config/fzf
         yes | /home/"$utilisateur"/.config/fzf/install
 
+        cp -f /home/"$utilisateur"/.zshrc /home/"$utilisateur"/save
+
         printf "%s \\n" "[Succès] oh-my-zsh est configuré"
     fi
 
