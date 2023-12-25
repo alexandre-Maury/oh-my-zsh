@@ -105,13 +105,20 @@ else
 
         # Cloner et déplacer le thème Bullet Train
         git clone https://github.com/caiogondim/bullet-train.zsh.git /tmp/bullet-train.zsh
-        mv /tmp/bullet-train.zsh /home/"$utilisateur"/.oh-my-zsh/themes/
+        mv /tmp/bullet-train.zsh $ZSH_CUSTOM/themes/
 
         # Cloner les plugins
         plugins=("zsh-autosuggestions" "zsh-syntax-highlighting")
         for plugin in "${plugins[@]}"; do
-            git clone "https://github.com/zsh-users/$plugin" "/home/"$utilisateur"/.oh-my-zsh/plugins/$plugin"
+            git clone https://github.com/zsh-users/$plugin $ZSH_CUSTOM/plugins/$plugin
         done
+
+        #plugins=( 
+            # other plugins...
+            # git
+            # zsh-autosuggestions
+            # zsh-syntax-highlighting
+        #)
 
         # Installer fzf
         git clone https://github.com/junegunn/fzf.git /home/"$utilisateur"/.fzf
