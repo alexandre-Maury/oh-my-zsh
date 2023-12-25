@@ -104,13 +104,13 @@ else
         cd /home/${utilisateur}/.oh-my-zsh/tools/ && chmod +x ./install.sh && ./install.sh 
 
         # Cloner et déplacer le thème Bullet Train
-        git clone https://github.com/caiogondim/bullet-train.zsh.git /home/${utilisateur}/.oh-my-zsh/custom/themes/
+        cd /home/${utilisateur}/.oh-my-zsh/custom/themes/ && git clone https://github.com/caiogondim/bullet-train.zsh.git 
       
 
         # Cloner les plugins
         plugins=("zsh-autosuggestions" "zsh-syntax-highlighting")
         for plugin in "${plugins[@]}"; do
-            git clone https://github.com/zsh-users/$plugin /home/${utilisateur}/.oh-my-zsh/custom/plugins/
+            cd /home/${utilisateur}/.oh-my-zsh/custom/plugins/ && git clone https://github.com/zsh-users/$plugin 
         done
 
         #plugins=( 
