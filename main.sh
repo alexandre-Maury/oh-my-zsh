@@ -16,6 +16,7 @@ if [[ $EUID != 0 ]]; then
     exit 1
 else
     read -p "[*] Veuillez entrer votre nom d'utilisateur : " utilisateur
+    mkdir ~/save
 
     # Validation du nom d'utilisateur
     if [ -z "$utilisateur" ]; then
