@@ -8,7 +8,7 @@
 # Faire une modification du clonage dans /temp/
 #==============================================================================================================
 
-deps=("npm" "git" "curl" "sudo" "neofetch")
+deps=("npm" "git" "curl" "sudo" "neofetch" "fonts-powerline")
 
 if [[ $EUID != 0 ]]; then
     printf "\n"
@@ -16,20 +16,13 @@ if [[ $EUID != 0 ]]; then
     exit 1
 else
     read -p "[*] Veuillez entrer votre nom d'utilisateur : " utilisateur
-    mkdir /home/${utilisateur}/save
+
 
     # Validation du nom d'utilisateur
     if [ -z "$utilisateur" ]; then
         printf "%s \\n" "[Erreur] Nom d'utilisateur vide. Veuillez entrer un nom d'utilisateur valide. "
         exit 1
     fi
-
-    # Le reste du script ici ...
-    apt update -y 
-    apt upgrade -y 
-    apt full-upgrade -y 
-    apt autoremove -y 
-    clear
 
     # Check les paquets installé et procéde à l'installation de ceux manquants
     for dep in "${deps[@]}"; do
@@ -91,52 +84,48 @@ else
     read -p "[*] Souhaitez-vous installé le theme oh-my-zsh ==> y/N " zsh
     if [[ "$zsh" =~ ^[Yy]$ ]]; then
 
+        mkdir -p $HOME/.config/zsh && mkdir -p /home/${utilisateur}/.config/zsh
+        mkdir -p $HOME/.config/zsh/save && mkdir -p /home/${utilisateur}/.config/zsh/save
+
         # Vérifier si le shell actuel est déjà zsh
         if [ "$(basename "$SHELL")" != "zsh" ]; then
             # Changer le shell de l'utilisateur à zsh
-            sudo usermod -s "$(which zsh)" "$utilisateur"
+            chsh -s $(which zsh) && echo $SHELL
         else
-            printf "Le shell est déjà configuré comme zsh."
+            printf "Le shell est déjà configuré comme $SHELL"
         fi
 
-        # Cloner oh-my-zsh
-        git clone https://github.com/ohmyzsh/ohmyzsh.git /home/${utilisateur}/.oh-my-zsh
-        cd /home/${utilisateur}/.oh-my-zsh/tools/ && chmod +x ./install.sh && ./install.sh 
+        printf "%s \\n" "==> Installation de oh-my-zsh ==> $HOME/.config/zsh/oh-my-zsh"
+        export ZSH="$HOME/.config/zsh/oh-my-zsh"
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-        # Cloner et déplacer le thème Bullet Train
-        cd /home/${utilisateur}/.oh-my-zsh/custom/themes/ && git clone https://github.com/caiogondim/bullet-train.zsh.git 
-      
 
-        # Cloner les plugins
+        # Install themes (powerlevel10k)
+        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.config/zsh/oh-my-zsh/custom}/themes/powerlevel10k
+
+
+        # Install plugins (zsh-autosuggestions and zsh-syntax-highlighting)
         plugins=("zsh-autosuggestions" "zsh-syntax-highlighting")
         for plugin in "${plugins[@]}"; do
-            cd /home/${utilisateur}/.oh-my-zsh/custom/plugins/ && git clone https://github.com/zsh-users/$plugin 
+            git clone https://github.com/zsh-users/${plugin}.git ${ZSH_CUSTOM:-$HOME/.config/zsh/oh-my-zsh/custom}/plugins/${plugin}
         done
-
-        #plugins=( 
-            # other plugins...
-            # git
-            # zsh-autosuggestions
-            # zsh-syntax-highlighting
-        #)
 
         # Installer fzf
         git clone https://github.com/junegunn/fzf.git /home/${utilisateur}/.fzf
         yes | /home/${utilisateur}/.fzf/install
 
-        cp -rf /home/${utilisateur}/.zshrc /home/${utilisateur}/save/.zshrc
-        cp -rf /root/.zshrc /home/${utilisateur}
+        # Sauvegarde des fichier de base
+        cp -rf /home/"${utilisateur}"/.zshrc /home/"${utilisateur}"/.config/zsh/save/.zshrc-backup-$(date +"%Y-%m-%d")
+                
+        # Activation du theme et des plugins
+        # sed  -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="agnoster"/g' $HOME/.zshrc
+        sed  -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' $HOME/.zshrc
+                
+        # Copie des fichier dans le dossier ${utilisateur}
+        cp -rf $HOME/.config/zsh/oh-my-zsh /home/"${utilisateur}"/.config/zsh
+        cp -rf $HOME/.zshrc /home/"${utilisateur}"/.zshrc
+        
 
-        printf "%s \\n" "[Succès] oh-my-zsh est configuré"
     fi
-
-    printf "%s \\n" "[Configuration] ==> modification de vim"
-    curl -L https://raw.githubusercontent.com/alexandre-Maury/vimrc/master/install.sh | bash
-    printf "%s \\n" "[Succés] ==> modification de vim"
-
-    printf "%s \\n" "[Configuration] ==> transfert des fonds d'ecrans"
-    cp -a $PWD/backgrounds /home/${utilisateur}/
-    printf "%s \\n" "[Succés] ==> disponible dans /home/${utilisateur}/"
-
 
 fi
