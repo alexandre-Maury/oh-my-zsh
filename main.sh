@@ -5,6 +5,7 @@
 # Auteur  : Alexandre Maury 
 # Version 1.2
 # License : GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
+# Faire une modification du clonage dans /temp/
 #==============================================================================================================
 
 deps=("npm" "git" "curl" "sudo" "neofetch")
