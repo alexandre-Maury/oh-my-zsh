@@ -16,7 +16,7 @@ if [[ $EUID != 0 ]]; then
     exit 1
 else
     read -p "[*] Veuillez entrer votre nom d'utilisateur : " utilisateur
-    mkdir /home/"$utilisateur"/save
+    mkdir /home/${utilisateur}/save
 
     # Validation du nom d'utilisateur
     if [ -z "$utilisateur" ]; then
@@ -100,17 +100,17 @@ else
         fi
 
         # Cloner oh-my-zsh
-        git clone https://github.com/ohmyzsh/ohmyzsh.git /home/"$utilisateur"/.oh-my-zsh
-        cd /home/"$utilisateur"/.oh-my-zsh/tools/ && chmod +x ./install.sh && ./install.sh 
+        git clone https://github.com/ohmyzsh/ohmyzsh.git /home/${utilisateur}/.oh-my-zsh
+        cd /home/${utilisateur}/.oh-my-zsh/tools/ && chmod +x ./install.sh && ./install.sh 
 
         # Cloner et déplacer le thème Bullet Train
         git clone https://github.com/caiogondim/bullet-train.zsh.git /tmp/bullet-train.zsh
-        mv /tmp/bullet-train.zsh $ZSH_CUSTOM/themes/
+        mv /tmp/bullet-train.zsh /home/${utilisateur}/.oh-my-zsh/custom/themes/
 
         # Cloner les plugins
         plugins=("zsh-autosuggestions" "zsh-syntax-highlighting")
         for plugin in "${plugins[@]}"; do
-            git clone https://github.com/zsh-users/$plugin $ZSH_CUSTOM/plugins/$plugin
+            git clone https://github.com/zsh-users/$plugin /home/${utilisateur}/.oh-my-zsh/custom/plugins/$plugin
         done
 
         #plugins=( 
@@ -121,10 +121,10 @@ else
         #)
 
         # Installer fzf
-        git clone https://github.com/junegunn/fzf.git /home/"$utilisateur"/.fzf
-        yes | /home/"$utilisateur"/.fzf/install
+        git clone https://github.com/junegunn/fzf.git /home/${utilisateur}/.fzf
+        yes | /home/${utilisateur}/.fzf/install
 
-        cp -rf /home/"$utilisateur"/.zshrc /home/"$utilisateur"/save/.zshrc
+        cp -rf /home/${utilisateur}/.zshrc /home/${utilisateur}/save/.zshrc
         cp -rf /root/.zshrc /home/${utilisateur}
 
         printf "%s \\n" "[Succès] oh-my-zsh est configuré"
