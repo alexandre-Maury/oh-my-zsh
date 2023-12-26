@@ -92,11 +92,7 @@ sed -i 's,ZSH=$HOME/.oh-my-zsh,ZSH=/home/alexandre/.config/zsh/oh-my-zsh,' /home
 printf "%s %s \\n" "[En cours] Copie des fichier .zshrc" "==> root"
 sudo cp -rf /home/"${utilisateur}"/.zshrc /root/.zshrc
 
-sudo groupadd ohmyzsh
-sudo usermod -aG ohmyzsh root
-sudo usermod -aG ohmyzsh ${utilisateur}
-sudo chown -R :ohmyzsh /home/"${utilisateur}"/.config/zsh/oh-my-zsh 
-# sudo chown -R $(whoami):root /home/"${utilisateur}"/.config/zsh/oh-my-zsh 
+sudo chown -R root:root /home/"${utilisateur}"/.config/zsh/oh-my-zsh 
 
 printf "%s %s\n" "[Succès] Installation terminée" "==> Redémarrer le terminal - puis procéder à sa configuration"
 
