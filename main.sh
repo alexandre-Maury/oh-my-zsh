@@ -84,7 +84,7 @@ sed  -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlightin
 
 # Modification du point d'entrée
 printf "%s %s \\n" "[En cours] Modification du point d'entrée" "export ZSH=$HOME/.oh-my-zsh ==> export ZSH=/home/"${utilisateur}"/.config/zsh/oh-my-zsh"
-sed -i 's,ZSH=$HOME/.oh-my-zsh,ZSH=/home/alexandre/.config/zsh/oh-my-zsh,' /home/"${utilisateur}"/.zshrc
+sed -i 's,ZSH=$HOME/.oh-my-zsh,ZSH=/home/"${utilisateur}"/.config/zsh/oh-my-zsh,' /home/"${utilisateur}"/.zshrc
 
 # Copie des fichier dans le dossier ${root}
 printf "%s %s \\n" "[En cours] Copie des fichier .zshrc" "==> root"
