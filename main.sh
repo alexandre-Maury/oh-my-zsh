@@ -54,7 +54,6 @@ fi
 
 # Install oh-my-zsh
 printf "%s \\n" "[En cours] Installation de my-oh-zsh"
-# export ZSH="/home/${utilisateur}/.config/zsh/oh-my-zsh"
 git clone https://github.com/ohmyzsh/ohmyzsh.git /home/"${utilisateur}"/.config/zsh/oh-my-zsh
 cp -rf /home/"${utilisateur}"/.config/zsh/oh-my-zsh/templates/zshrc.zsh-template /home/"${utilisateur}"/.zshrc
 
@@ -78,8 +77,6 @@ yes | /home/"${utilisateur}"/.config/fzf/install
 # Activation du theme 
 printf "%s %s \\n" "[En cours] Activation du theme" "==> powerlevel10k"
 sed  -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' /home/"${utilisateur}"/.zshrc
-
-
 
 # Activation des plugins (zsh-autosuggestions et zsh-syntax-highlighting)
 printf "%s %s \\n" "[En cours] Activation des plugins" "==> zsh-autosuggestions et zsh-syntax-highlighting"
