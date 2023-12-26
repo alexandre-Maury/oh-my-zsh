@@ -87,6 +87,5 @@ printf "%s %s \\n" "[En cours] Modification du point d'entrée" "export ZSH=$HOM
 sed -i 's,ZSH=$HOME/.oh-my-zsh,ZSH=/home/alexandre/.config/zsh/oh-my-zsh,' /home/alexandre/.zshrc
 
 # Copie des fichier dans le dossier ${root}
-printf "%s %s \\n" "[En cours] Copie des fichier" "==> root"
-#sudo cp -rf /home/"${utilisateur}"/.config/zsh/oh-my-zsh /root/.config/zsh/oh-my-zsh
+printf "%s %s \\n" "[En cours] Copie des fichier .zshrc" "==> root"
 sudo cp -rf /home/"${utilisateur}"/.zshrc /root/.zshrc
