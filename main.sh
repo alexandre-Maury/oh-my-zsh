@@ -8,7 +8,7 @@
 # Faire une modification du clonage dans /temp/
 #==============================================================================================================
 
-deps=("npm" "git" "curl" "sudo" "neofetch" "fonts-powerline")
+deps=("zsh" "npm" "git" "curl" "sudo" "neofetch" "fonts-powerline")
 
 read -p "[*] Veuillez entrer votre nom d'utilisateur : " utilisateur
 
