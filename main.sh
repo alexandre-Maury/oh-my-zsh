@@ -6,6 +6,7 @@
 # Version 1.2
 # License : GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 # Faire une modification du clonage dans /temp/
+# ZSH_DISABLE_COMPFIX="true" avant la ligne source $ZSH/oh-my-zsh.sh.
 #==============================================================================================================
 
 deps=("npm" "git" "curl" "sudo" "neofetch" "fonts-powerline")
