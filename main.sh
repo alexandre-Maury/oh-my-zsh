@@ -63,8 +63,8 @@ printf "%s %s \\n" "[En cours] Installation du theme" "==> powerlevel10k"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/"${utilisateur}"/.config/zsh/oh-my-zsh/custom/themes/powerlevel10k
 
 
-# Install plugins (zsh-autosuggestions and zsh-syntax-highlighting)
-plugins=("zsh-autosuggestions" "zsh-syntax-highlighting")
+# Install plugins (zsh-autosuggestions - zsh-syntax-highlighting -zsh-completions) 
+plugins=("zsh-autosuggestions" "zsh-syntax-highlighting" "zsh-completions")
 for plugin in "${plugins[@]}"; do
     printf "%s %s \\n" "[En cours] Installation du plugin" "==> ${plugin}"
     git clone https://github.com/zsh-users/"${plugin}".git /home/"${utilisateur}"/.config/zsh/oh-my-zsh/custom/plugins/"${plugin}" 
@@ -81,7 +81,7 @@ sed  -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' 
 
 # Activation des plugins (zsh-autosuggestions et zsh-syntax-highlighting)
 printf "%s %s \\n" "[En cours] Activation des plugins" "==> zsh-autosuggestions et zsh-syntax-highlighting"
-sed  -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/g' /home/"${utilisateur}"/.zshrc
+sed  -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-completions)/g' /home/"${utilisateur}"/.zshrc
 
 printf "%s %s \\n" "[En cours] Modification du point d'entrée" "export ZSH=$HOME/.oh-my-zsh ==> export ZSH=/home/"${utilisateur}"/.config/zsh/oh-my-zsh"
 sed -i 's,ZSH=$HOME/.oh-my-zsh,ZSH=/home/alexandre/.config/zsh/oh-my-zsh,' /home/alexandre/.zshrc
