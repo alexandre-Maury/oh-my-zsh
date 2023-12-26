@@ -82,8 +82,9 @@ sed  -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' 
 printf "%s %s \\n" "[En cours] Activation des plugins" "==> zsh-autosuggestions et zsh-syntax-highlighting"
 sed  -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-completions)/g' /home/"${utilisateur}"/.zshrc
 
+# Modification du point d'entrée
 printf "%s %s \\n" "[En cours] Modification du point d'entrée" "export ZSH=$HOME/.oh-my-zsh ==> export ZSH=/home/"${utilisateur}"/.config/zsh/oh-my-zsh"
-sed -i 's,ZSH=$HOME/.oh-my-zsh,ZSH=/home/alexandre/.config/zsh/oh-my-zsh,' /home/alexandre/.zshrc
+sed -i 's,ZSH=$HOME/.oh-my-zsh,ZSH=/home/alexandre/.config/zsh/oh-my-zsh,' /home/"${utilisateur}"/.zshrc
 
 # Copie des fichier dans le dossier ${root}
 printf "%s %s \\n" "[En cours] Copie des fichier .zshrc" "==> root"
