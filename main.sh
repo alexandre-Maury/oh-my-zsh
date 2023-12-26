@@ -6,7 +6,6 @@
 # Version 1.2
 # License : GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 # Faire une modification du clonage dans /temp/
-# ZSH_DISABLE_COMPFIX="true" avant la ligne source $ZSH/oh-my-zsh.sh.
 #==============================================================================================================
 
 deps=("npm" "git" "curl" "sudo" "neofetch" "fonts-powerline")
@@ -80,6 +79,8 @@ yes | /home/"${utilisateur}"/.config/fzf/install
 printf "%s %s \\n" "[En cours] Activation du theme" "==> powerlevel10k"
 sed  -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k\/powerlevel10k"/g' /home/"${utilisateur}"/.zshrc
 
+
+
 # Activation des plugins (zsh-autosuggestions et zsh-syntax-highlighting)
 printf "%s %s \\n" "[En cours] Activation des plugins" "==> zsh-autosuggestions et zsh-syntax-highlighting"
 sed  -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-completions)/g' /home/"${utilisateur}"/.zshrc
@@ -90,6 +91,8 @@ sed -i 's,ZSH=$HOME/.oh-my-zsh,ZSH=/home/alexandre/.config/zsh/oh-my-zsh,' /home
 # Copie des fichier dans le dossier ${root}
 printf "%s %s \\n" "[En cours] Copie des fichier .zshrc" "==> root"
 sudo cp -rf /home/"${utilisateur}"/.zshrc /root/.zshrc
+
+sudo chown -R $(whoami):root /home/"${utilisateur}"/.config/zsh/oh-my-zsh 
 
 printf "%s %s\n" "[Succès] Installation terminée" "==> Redémarrer le terminal - puis procéder à sa configuration"
 
