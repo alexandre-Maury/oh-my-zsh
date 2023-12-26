@@ -89,3 +89,6 @@ sed -i 's,ZSH=$HOME/.oh-my-zsh,ZSH=/home/alexandre/.config/zsh/oh-my-zsh,' /home
 # Copie des fichier dans le dossier ${root}
 printf "%s %s \\n" "[En cours] Copie des fichier .zshrc" "==> root"
 sudo cp -rf /home/"${utilisateur}"/.zshrc /root/.zshrc
+
+printf "%s %s\n" "[Succès] Installation terminée" "==> Redémarrer le terminal - puis procéder à sa configuration"
+
