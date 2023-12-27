@@ -36,7 +36,7 @@ done
 # Sauvegarde des fichier de base 
 printf "%s \\n" "[En cours] Sauvegarde du fichier .zshrc"
 sudo cp -rf /root/.zshrc /root/.zshrc-backup-$(date +"%Y-%m-%d")
-
+sudo cp -rf /home/"${utilisateur}"/.zshrc /home/"${utilisateur}"/.zshrc-backup-$(date +"%Y-%m-%d")
 
 # Vérifier si le shell actuel est déjà zsh
 if [ "$(basename "$SHELL")" != "zsh" ]; then
