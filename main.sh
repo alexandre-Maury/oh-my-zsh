@@ -72,7 +72,7 @@ done
 printf "%s \\n" "[En cours] Installation de fzf" # A tester
 git clone --depth=1 https://github.com/junegunn/fzf.git /tmp/zsh/fzf
 sudo cp -rf /tmp/zsh/fzf /root/.oh-my-zsh/custom/plugins/fzf
-yes | sudo sh /root/.oh-my-zsh/custom/plugins/fzf/install
+yes | sudo /root/.oh-my-zsh/custom/plugins/fzf/install
                 
 # Activation du theme 
 printf "%s %s \\n" "[En cours] Activation du theme" "==> powerlevel10k"
