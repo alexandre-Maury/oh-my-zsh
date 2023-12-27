@@ -64,13 +64,13 @@ sudo cp -rf /tmp/zsh/powerlevel10k /root/.oh-my-zsh/custom/themes/powerlevel10k
 plugins=("zsh-autosuggestions" "zsh-syntax-highlighting" "zsh-completions")
 for plugin in "${plugins[@]}"; do
     printf "%s %s \\n" "[En cours] Installation du plugin" "==> ${plugin}"
-    git clone https://github.com/zsh-users/"${plugin}".git /tmp/zsh/${plugin}
+    git clone --depth=1 https://github.com/zsh-users/"${plugin}".git /tmp/zsh/${plugin}
     sudo cp -rf /tmp/zsh/${plugin} /root/.oh-my-zsh/custom/plugins/"${plugin}" 
 done
 
 # Installer fzf
 printf "%s \\n" "[En cours] Installation de fzf" # A tester
-git clone https://github.com/junegunn/fzf.git /tmp/zsh/fzf
+git clone --depth=1 https://github.com/junegunn/fzf.git /tmp/zsh/fzf
 sudo cp -rf /tmp/zsh/fzf /root/.oh-my-zsh/custom/plugins/fzf
 yes | /root/.oh-my-zsh/custom/plugins/fzf/install
                 
