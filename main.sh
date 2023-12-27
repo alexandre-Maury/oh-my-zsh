@@ -82,15 +82,15 @@ sudo sed  -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k\/powerlevel10k
 printf "%s %s \\n" "[En cours] Activation des plugins" "==> zsh-autosuggestions et zsh-syntax-highlighting"
 sudo sed  -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-completions)/g' /root/.zshrc
 
-sudo echo 'export VISUAL=vim' >> /root/.zshrc
-
 # Copie des fichier dans le dossier utilisateur
-printf "%s %s \\n" "[En cours] Copie des fichier .zshrc" "==> /home/${utilisateur}"
-
+printf "%s %s \\n" "[En cours] Copie des fichier" "==> /home/${utilisateur}"
 sudo cp -rf /root/.oh-my-zsh /home/"${utilisateur}"/.oh-my-zsh
 sudo cp -rf /root/.zshrc /home/"${utilisateur}"/.zshrc 
 
 sudo chown -R ${utilisateur}:${utilisateur} /home/${utilisateur}/.oh-my-zsh /home/${utilisateur}/.zshrc
+
+echo 'export VISUAL=vim' >> /root/.zshrc
+
 
 printf "%s %s\n" "[Succès] Installation terminée" "==> Redémarrer le terminal - puis procéder à sa configuration"
 
