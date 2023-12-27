@@ -90,7 +90,7 @@ printf "%s %s \\n" "[En cours] Copie des fichier .zshrc" "==> /home/${utilisateu
 sudo cp -rf /root/.oh-my-zsh /home/"${utilisateur}"/.oh-my-zsh
 sudo cp -rf /root/.zshrc /home/"${utilisateur}"/.zshrc 
 
-chown -R ${utilisateur}:${utilisateur} /home/${utilisateur}/.oh-my-zsh /home/${utilisateur}/.zshrc
+sudo chown -R ${utilisateur}:${utilisateur} /home/${utilisateur}/.oh-my-zsh /home/${utilisateur}/.zshrc
 
 printf "%s %s\n" "[Succès] Installation terminée" "==> Redémarrer le terminal - puis procéder à sa configuration"
 
