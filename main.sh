@@ -89,7 +89,7 @@ sudo cp -rf /root/.zshrc /home/"${utilisateur}"/.zshrc
 
 sudo chown -R ${utilisateur}:${utilisateur} /home/${utilisateur}/.oh-my-zsh /home/${utilisateur}/.zshrc
 
-echo 'export VISUAL=vim' >> /root/.zshrc
+echo 'export VISUAL=vim' >> /home/${utilisateur}/.zshrc
 
 
 printf "%s %s\n" "[Succès] Installation terminée" "==> Redémarrer le terminal - puis procéder à sa configuration"
