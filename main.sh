@@ -91,6 +91,9 @@ sudo chown -R ${utilisateur}:${utilisateur} /home/${utilisateur}/.oh-my-zsh /hom
 
 echo 'export VISUAL=vim' >> /home/${utilisateur}/.zshrc
 
-
+clear
 printf "%s %s\n" "[Succès] Installation terminée" "==> Redémarrer le terminal - puis procéder à sa configuration"
+printf "%s %s \\n" "[Sauvegarde] Sauvegarde des fichiers .zshrc" "==> /root/.zshrc-backup-$(date +"%Y-%m-%d")"
+printf "%s %s \\n" "[Sauvegarde] Sauvegarde des fichiers .zshrc" "==> /home/"${utilisateur}"/.zshrc-backup-$(date +"%Y-%m-%d")"
+printf "%s %s \\n" "[Powerlevel10k] Pour refaire la configuration du thèmes" "==> p10k configure"
 
